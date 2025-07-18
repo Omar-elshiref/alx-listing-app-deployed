@@ -80,65 +80,24 @@ In this milestone, you will implement the Booking Detail Page based on the provi
 By the end of this milestone, you will have created a functional and responsive booking page where users can input details and proceed with the booking process.
 
 
+## Project Objectives
+The objective of this milestone is to deploy the ALX Listing App (Airbnb clone) to a cloud hosting platform so that it is publicly accessible.
 
-ده كمبونبنت الاصلي 
+By completing this milestone, you will:
 
-import { PROPERTYLISTINGSAMPLE } from "@/constants/index";
-import { useRouter } from "next/router";
-import PropertyDetail from "@/components/property/PropertyDetail";
-
-export default function PropertyPage() {
-  const router = useRouter();
-  const { id } = router.query;
-  const property = PROPERTYLISTINGSAMPLE.find(
-    (item) => String(item.id) === String(id)
-  );
-
-  if (!property) return <p>Property not found</p>;
-
-  return (
-    <div>
-      <PropertyDetail property={property} />
-    </div>
-  );
-}
-
-عايز اضيف مكتبه axois وخليه كده 
-
-import { useRouter } from "next/router";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import PropertyDetail from "@/components/property/PropertyDetail";
-
-export default function PropertyDetailPage() {
-  const router = useRouter();
-  const { id } = router.query;
-  const [property, setProperty] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProperty = async () => {
-      if (!id) return;
-      try {
-        const response = await axios.get(`/api/properties/${id}`);
-        setProperty(response.data);
-      } catch (error) {
-        console.error("Error fetching property details:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProperty();
-  }, [id]);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!property) {
-    return <p>Property not found</p>;
-  }
-
-  return <PropertyDetail property={property} />;
-}
+`Configure your Next.js application for production.
+Deploy the app to Vercel (recommended) or an alternative platform like Netlify.
+Ensure all API integrations work correctly in the deployed environment.
+Verify that the app is fully responsive and functional in a live environment.
+Best Practices
+Environment Variables: Ensure all API endpoints and sensitive keys are stored in environment variables (.env.local).
+Optimized Build: Run npm run build to check for errors before deployment.
+Cross-Origin Resource Sharing (CORS): If your API is hosted separately, ensure CORS is configured to allow requests from your deployed domain.
+Performance Optimization:
+Use Next.js Image Optimization.
+Enable caching where applicable.
+Error Handling: Ensure proper error boundaries and fallback UI for failed API calls.
+Note:
+Ensure your app is publicly accessible via the provided URL.
+Double-check API integrations in the live environment.
+Submit your repository and README.md with the live link before the deadline.`
